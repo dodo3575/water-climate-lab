@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Education — AI 융합 수학교육</title>
+<meta name="description" content="AI 융합 수학교육, 데이터 분석 동아리, 교직원 연수 활동 아카이브.">
+
+<!--
+  ============================================================
+  ★★★ 이 페이지에 새 글(게시물)을 추가하는 방법 ★★★
+  ============================================================
+  research.html과 완전히 같은 방식입니다.
+  아래 "POST 템플릿" 주석 블록을 복사해서 <div class="board" id="board">
+  바로 다음 줄에 붙여넣고 내용만 바꾸면 됩니다.
+
+  파일(동아리 활동 사진, 연수 자료 등)을 첨부하려면:
+  1) files 폴더에 GitHub에서 파일 업로드
+  2) <div class="post-files"> 안에 file-chip 링크 한 줄 추가
+  ============================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html#home" class="brand">OOO <b>·</b> PORTFOLIO</a>
+    <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">☰</button>
+    <nav class="links" id="navLinks">
+      <a href="index.html#home">Home</a>
+      <a href="research.html">Research</a>
+      <a href="education.html" class="current">Education</a>
+      <a href="index.html#timeline">Timeline</a>
+      <a href="index.html#community">Community</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ PAGE HERO ============ -->
+<section class="page-hero tone-education">
+  <div class="page-hero-inner">
+    <div class="num">02 / EDUCATION</div>
+    <h1>AI 융합 수학교육</h1>
+    <p class="role">고등학교 수학교사 · AIEDAP 마스터교원 (2024–2025) · 2024 교실혁명 선도교사 · 데이터 분석 동아리 지도</p>
+    <a class="back-link" href="index.html#home">← Home으로</a>
+  </div>
+</section>
+
+<section class="track education">
+  <div class="wrap">
+
+    <div class="status-grid reveal">
+      <div class="status-card">
+        <div class="eyebrow">Role</div>
+        <div class="big">고등학교 수학교사</div>
+        <div class="sm">중등교원자격 (수학, 환경)</div>
+      </div>
+      <div class="status-card">
+        <div class="eyebrow">Program</div>
+        <div class="big">AIEDAP 마스터교원</div>
+        <div class="sm">2024 선발 · 2025 전문성 강화</div>
+      </div>
+      <div class="status-card">
+        <div class="eyebrow">Leadership</div>
+        <div class="big">교실혁명 선도교사</div>
+        <div class="sm">2024 · AI 융합 수업 교사모임 소속</div>
+      </div>
+    </div>
+
+    <div class="subhead">Programs</div>
+    <div class="cardrow reveal">
+      <div class="prog-card">
+        <h4>데이터 분석 동아리</h4>
+        <p>학생 주도형 데이터 수집·분석 지도. 이론이 아닌 학생들의 실생활 문제를 데이터로 풀어보는 프로젝트를 진행합니다.</p>
+      </div>
+      <div class="prog-card">
+        <h4>교직원 연수</h4>
+        <p>AI 융합 수업 교사모임 소속으로, 동료 교사를 대상으로 한 AI·데이터 활용 연수를 기획하고 진행합니다.</p>
+      </div>
+      <div class="prog-card">
+        <h4>AI 융합 수업</h4>
+        <p>수학 교과의 논리적 사고를 바탕으로, 딥러닝·데이터 시각화 연수 경험을 실제 수업 설계에 적용합니다.</p>
+      </div>
+    </div>
+
+    <div class="subhead">Certifications &amp; Skills</div>
+    <div class="badges reveal">
+      <span class="badge">정보처리기사</span>
+      <span class="badge">컴퓨터활용능력 2급</span>
+      <span class="badge">중등교원자격증 (수학·환경)</span>
+      <span class="badge">한국사 1급</span>
+    </div>
+
+    <div class="subhead">Education Board</div>
+    <div class="board-head reveal">
+      <p style="margin:0; font-size:14px; color:var(--ink-soft);">동아리 활동, 연수 후기, 수업 자료를 이곳에 시간 순으로 기록합니다.</p>
+      <span class="cnt">0 posts</span>
+    </div>
+
+    <div class="board reveal" id="board">
+
+      <!--
+        ============================================================
+        POST 템플릿 — 이 블록을 복사해서 위에(board 바로 아래) 붙여넣으세요
+        ============================================================
+        <div class="post">
+          <div class="post-head">
+            <span class="post-date">2026.09</span>
+            <span class="post-title">게시물 제목</span>
+            <span class="post-tag">동아리</span>  ← 태그는 자유롭게: 동아리 / 연수 / 수업자료 / 발표
+          </div>
+          <p class="post-body">
+            내용을 짧게 적습니다. 활동 사진이나 자료는 첨부파일로 연결하세요.
+          </p>
+          <div class="post-files">
+            <a class="file-chip" href="files/파일이름.jpg" download>
+              <span class="clip">📎</span> 파일이름.jpg
+            </a>
+          </div>
+        </div>
+        ============================================================
+      -->
+
+      <div class="empty-card">
+        동아리 활동과 연수 기록이 이곳에 쌓입니다.<br>
+        첫 게시물을 준비 중입니다.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 OOO. Research &amp; Education Portfolio.</p>
+    <p><a href="index.html#home" style="color:#8B958F;">← Home</a></p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
