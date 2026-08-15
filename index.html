@@ -3,57 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>기후위기 대응 & AI 융합 교육 포트폴리오</title>
+    <title>환경 연구 & AI 교육 포트폴리오</title>
     <style>
-        body { font-family: 'Pretendard', sans-serif; margin: 0; line-height: 1.6; color: #333; }
-        .hero { 
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('KakaoTalk_20260815_162638815.jpg'); 
-            background-size: cover; background-position: center; height: 100vh; 
-            display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center;
+        :root {
+            --primary-blue: #607d8b; /* 파스텔톤 슬레이트 블루 */
+            --pastel-mint: #b2dfdb;  /* 사진 속 물빛 테마 */
+            --soft-gray: #f5f7f8;    /* 차분한 배경색 */
         }
-        .container { max-width: 900px; margin: -100px auto 50px; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; }
-        h1 { font-size: 3.5rem; margin-bottom: 10px; font-weight: 800; }
-        h2 { color: #d32f2f; border-bottom: 2px solid #f4f4f4; padding-bottom: 10px; margin-top: 30px; }
-        .section { margin-bottom: 40px; }
-        .badge { background: #eef2f3; color: #444; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; margin-right: 5px; display: inline-block; }
+        body { font-family: 'Pretendard', sans-serif; margin: 0; line-height: 1.8; color: #2c3e50; background-color: var(--soft-gray); }
+        
+        /* 히어로 섹션 */
+        .hero { 
+            background: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), 
+                        url('main.jpg') no-repeat center center; /* 파일명을 main.jpg로 바꿔보세요 */
+            background-size: cover; background-color: #d1d9e0; 
+            height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+        }
+        .hero h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 10px; color: #2c3e50; }
+        .hero p { font-size: 1.15rem; opacity: 0.8; color: #2c3e50; }
+
+        .container { max-width: 800px; margin: -50px auto 60px; position: relative; padding: 0 20px; }
+        .card { background: white; padding: 35px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); margin-bottom: 25px; }
+        h2 { color: var(--primary-blue); font-size: 1.4rem; border-left: 4px solid var(--pastel-mint); padding-left: 15px; margin-bottom: 20px; }
+        
+        /* 자격증 전용 공간 */
+        .skills-area { background: #fdfdfd; padding: 15px; border-radius: 12px; border: 1px dashed #e0e0e0; margin-top: 15px; }
+        .skills-area strong { display: block; font-size: 0.85rem; color: #888; margin-bottom: 8px; }
+        .badge { background: #f0f4f5; color: #546e7a; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; margin-right: 6px; display: inline-block; font-weight: 500; }
     </style>
 </head>
 <body>
     <header class="hero">
         <h1>환경과 교육의 항해</h1>
-        <p style="font-size: 1.2rem;">기후위기대응 연구실 연구원 | AI 융합 수학교육 전문가</p>
+        <p>기후위기대응 연구원 & AI 융합 수학교육 전문가</p>
     </header>
 
     <div class="container">
-        <section class="section">
-            <h2>🌊 Research: 기후위기 대응 및 하천 수질</h2>
-            <p><strong>에너지 환경공학과 박사 수료 (2026)</strong></p>
+        <!-- 1. 연구 섹션 -->
+        <div class="card">
+            <h2>🌊 Research: 기후위기 대응 및 수질 연구</h2>
+            <p style="font-weight: 600;">에너지 환경공학과 박사 수료 (2026)</p>
             <ul>
-                <li><strong>소속:</strong> 기후위기대응 연구실 연구원</li>
-                <li><strong>주요 분야:</strong> 하천 수질 데이터 분석 및 기후 변화 대응 전략</li>
-                <li><strong>전문 자격:</strong> 수질환경기사, 위생사, 수질환경 산업기사</li>
+                <li>기후위기대응 연구실 연구원</li>
+                <li>하천 수질 데이터 분석 및 수질 관리 전략 연구</li>
             </ul>
-        </section>
+            <div class="skills-area">
+                <strong>Research Certifications</strong>
+                <span class="badge">수질환경기사</span>
+                <span class="badge">위생사</span>
+                <span class="badge">수질환경 산업기사</span>
+            </div>
+        </div>
 
-        <section class="section">
+        <!-- 2. 교육 섹션 -->
+        <div class="card">
             <h2>📊 Education: AI 융합 및 데이터 교육</h2>
-            <p><strong>고등학교 수학교사 | AIEDAP 마스터 교원 (2024-2025)</strong></p>
+            <p style="font-weight: 600;">고등학교 수학교사 | AIEDAP 마스터 교원</p>
             <ul>
-                <li>2024년 교실혁명 선도교사</li>
-                <li>데이터 분석 동아리 지도 및 교직원 연수 운영</li>
-                <li><strong>전문 역량:</strong> 딥러닝(2022), 데이터 시각화(2023) 연수 수료</li>
+                <li>AIEDAP 마스터 교원 (2024-2025) 및 교실혁명 선도교사</li>
+                <li>수학 데이터 분석 동아리 지도 및 교직원 AI 연수 운영</li>
             </ul>
-        </section>
-
-        <section class="section">
-            <h2>🛠️ Technical Skills</h2>
-            <div style="margin-top: 10px;">
+            <div class="skills-area">
+                <strong>Professional Licenses</strong>
                 <span class="badge">정보처리기사</span>
                 <span class="badge">컴퓨터활용능력 2급</span>
                 <span class="badge">중등교원자격(수학, 환경)</span>
-                <span class="badge">한국사 1급</span>
             </div>
-        </section>
+        </div>
     </div>
 </body>
 </html>
