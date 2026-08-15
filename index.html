@@ -1,115 +1,594 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>W-C Lab: 환경 연구 & AI 교육 통합 허브</title>
-    <style>
-        :root { --primary: #455a64; --accent: #81d4fa; --bg: #f4f7f6; }
-        body { font-family: 'Pretendard', sans-serif; margin: 0; background: var(--bg); color: #333; scroll-behavior: smooth; line-height: 1.8; }
-        nav { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); z-index: 1000; padding: 15px 50px; display: flex; justify-content: space-between; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        nav .logo { font-weight: 800; color: var(--primary); }
-        nav a { text-decoration: none; color: var(--primary); font-weight: 600; margin-left: 25px; font-size: 0.9rem; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>하천 수질 · 기후위기 연구 &amp; AI 융합 수학교육 — 연구·교육 포트폴리오</title>
+<meta name="description" content="에너지환경공학과 박사수료 연구자이자 고등학교 수학교사. 하천 수질·기후위기 연구와 AI 융합 수학교육을 각각 소개합니다.">
 
-        /* 대문 사진: main.jpg 반영 [1] */
-        .hero { 
-            height: 100vh; background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('main.jpg') no-repeat center center; 
-            background-size: cover; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center;
-        }
-        .hero h1 { font-size: 3.8rem; text-shadow: 0 4px 15px rgba(0,0,0,0.4); margin: 0; }
-        .hero p { font-size: 1.5rem; font-weight: 300; margin-top: 10px; opacity: 0.9; }
+<!--
+  ============================================================
+  이 파일을 직접 여시는 분께 (편집 가이드)
+  ============================================================
+  1) 이름 넣기: 아래에서 "OOO" 로 표시된 부분을 실제 이름으로 바꿔주세요.
+     (Ctrl+F로 "OOO" 를 검색하면 3곳이 나옵니다: 상단 nav, 히어로, 푸터)
+  2) 이메일 넣기: "your-email@example.com" 을 실제 이메일로 바꿔주세요.
+  3) 링크 넣기: "https://github.com/USERNAME" 을 실제 GitHub 주소로 바꿔주세요.
+  4) 사진: hero.jpg 를 같은 폴더에 함께 올려야 배경 사진이 보입니다.
+  5) 연구/교육 아카이브에 실제 글이 쌓이면, "ARCHIVE ITEM 템플릿" 이라고
+     주석 쓰여있는 블록을 통째로 복사해서 붙여넣고 내용만 바꾸면 됩니다.
+  ============================================================
+-->
 
-        .container { padding: 100px 20px; max-width: 1200px; margin: auto; }
-        .section-title { font-size: 2.2rem; color: var(--primary); border-left: 8px solid var(--accent); padding-left: 20px; margin-bottom: 50px; }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 35px; }
-        .card { background: white; padding: 40px; border-radius: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); transition: 0.3s; position: relative; overflow: hidden; }
-        .card:hover { transform: translateY(-10px); border: 2px solid var(--accent); }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 
-        /* 슬라이드 이미지 공간 */
-        .slide-img { width: 100%; height: 220px; background: #eceff1; border-radius: 15px; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid #eee; }
-        .slide-img img { width: 100%; height: 100%; object-fit: cover; }
+<style>
+  /* ============ 토큰 (색상 · 타이포 · 여백) ============ */
+  :root{
+    --ink:        #1F2A2E;   /* 본문 텍스트 */
+    --ink-soft:   #4B5A5F;   /* 보조 텍스트 */
+    --void:       #14201F;   /* 어두운 배경(네비, 히어로 오버레이) */
 
-        .btn { background: var(--primary); color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; display: inline-block; margin-top: 20px; font-weight: 600; transition: 0.3s; }
-        .btn:hover { background: var(--accent); color: var(--primary); }
-        .btn-outline { background: transparent; border: 1.5px solid var(--primary); color: var(--primary); margin-left: 10px; }
+    --teal:       #4F818C;   /* 연구 트랙 accent (물빛) */
+    --teal-deep:  #2E4E56;
+    --teal-tint:  #E4EDEE;
 
-        .badge { background: #f0f4f5; color: #546e7a; padding: 6px 14px; border-radius: 30px; font-size: 0.8rem; margin-right: 8px; margin-bottom: 8px; display: inline-block; font-weight: 600; }
+    --coral:      #B85C46;   /* 교육 트랙 accent (뱃머리 붉은빛, 톤다운) */
+    --coral-deep: #8A4433;
+    --coral-tint: #F3E7E1;
 
-        footer { background: #eceff1; padding: 80px 20px; text-align: center; color: #78909c; }
-        .footer-url { display: block; margin-top: 20px; font-size: 1.2rem; color: var(--primary); font-weight: 700; text-decoration: none; }
-    </style>
+    --paper:      #F1F1EC;   /* 배경 (물안개빛 그레이) */
+    --paper-alt:  #E8E8E1;
+    --card:       #FBFBF8;
+    --line:       #D8D8CF;
+
+    --serif: 'Noto Serif KR', serif;
+    --sans:  'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+    --mono:  'IBM Plex Mono', ui-monospace, monospace;
+
+    --maxw: 1120px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--sans); font-size:16px; line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; }
+  h1,h2,h3{ font-family:var(--serif); font-weight:700; margin:0; letter-spacing:-0.01em; }
+  p{ margin:0 0 1em; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ink-soft); font-weight:600;
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--coral); outline-offset:3px; border-radius:2px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+  }
+
+  /* ============ 리빌 애니메이션 ============ */
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  /* ============ NAV ============ */
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:1000;
+    background:rgba(20,32,31,.72); backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:16px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    font-family:var(--mono); font-size:13px; letter-spacing:.12em; color:#EDEEE7;
+    text-decoration:none; font-weight:600;
+  }
+  .brand b{ color:var(--coral); font-weight:600; }
+  nav.links{ display:flex; gap:30px; }
+  nav.links a{
+    font-size:14px; color:#CBD3CE; text-decoration:none; font-weight:500;
+    padding:4px 2px; border-bottom:1px solid transparent;
+  }
+  nav.links a:hover{ color:#fff; border-color:var(--coral); }
+  .nav-toggle{ display:none; background:none; border:0; color:#fff; font-size:22px; cursor:pointer; }
+
+  @media (max-width:760px){
+    nav.links{
+      position:absolute; top:100%; left:0; right:0; background:var(--void);
+      flex-direction:column; gap:0; max-height:0; overflow:hidden;
+      transition:max-height .35s ease;
+    }
+    nav.links.open{ max-height:320px; }
+    nav.links a{ padding:16px 28px; border-bottom:1px solid rgba(255,255,255,.06); }
+    .nav-toggle{ display:block; }
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative; min-height:100vh; display:flex; align-items:flex-end;
+    background:
+      linear-gradient(180deg, rgba(18,26,26,.35) 0%, rgba(14,20,20,.55) 55%, rgba(10,15,15,.86) 100%),
+      url('hero.jpg') center 74% / cover no-repeat;
+    color:#F4F4EE;
+  }
+  .hero-inner{ padding:0 28px 84px; max-width:var(--maxw); margin:0 auto; width:100%; }
+  .hero .eyebrow{ color:#C9D3CC; margin-bottom:18px; }
+  .hero h1{
+    font-size:clamp(2rem, 4.6vw, 3.4rem); line-height:1.28; color:#fff;
+    max-width:16ch;
+  }
+  .hero .sub{
+    margin-top:20px; font-size:17px; color:#DCE3DC; max-width:52ch; line-height:1.8;
+  }
+  .hero .meta{
+    margin-top:28px; display:flex; flex-wrap:wrap; gap:10px 22px;
+    font-family:var(--mono); font-size:12.5px; color:#B7C2BC;
+  }
+  .hero .meta span{ white-space:nowrap; }
+  .hero .meta b{ color:#EDE3DA; font-weight:600; }
+  .scrollcue{
+    position:absolute; right:28px; bottom:30px; writing-mode:vertical-rl;
+    font-family:var(--mono); font-size:11px; letter-spacing:.2em; color:#9FAAA4;
+  }
+
+  /* ============ PHILOSOPHY / TWIN STRIP ============ */
+  .philosophy{ padding:100px 0 88px; }
+  .philosophy .lede{
+    max-width:62ch; font-size:19px; color:var(--ink-soft); line-height:1.85;
+    margin-bottom:52px;
+  }
+  .philosophy .lede strong{ color:var(--ink); font-weight:700; }
+
+  .twin{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
+  .twin-cell{ background:var(--card); padding:32px 30px; }
+  .twin-cell h3{
+    font-family:var(--sans); font-size:15px; font-weight:700; letter-spacing:-0.01em;
+    display:flex; align-items:center; gap:10px; margin-bottom:18px;
+  }
+  .dot{ width:9px; height:9px; border-radius:50%; flex:none; }
+  .twin-cell.research .dot{ background:var(--teal); }
+  .twin-cell.education .dot{ background:var(--coral); }
+  .twin-row{ display:flex; gap:14px; padding:12px 0; border-top:1px solid var(--line); font-size:14.5px; }
+  .twin-row:first-of-type{ border-top:none; }
+  .twin-row .k{ flex:0 0 92px; font-family:var(--mono); font-size:11.5px; color:var(--ink-soft); letter-spacing:.04em; padding-top:2px; }
+  .twin-row .v{ flex:1; color:var(--ink); }
+
+  .philosophy .note{
+    text-align:center; margin-top:34px; padding:20px 24px;
+    font-family:var(--mono); font-size:13px; color:var(--ink-soft);
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+
+  @media (max-width:700px){ .twin{ grid-template-columns:1fr; } }
+
+  /* ============ TRACK SECTIONS (Research / Education) ============ */
+  .track{ padding:96px 0; position:relative; }
+  .track.research{ background:var(--paper); }
+  .track.education{ background:var(--paper-alt); }
+
+  .track-head{
+    display:flex; align-items:flex-start; gap:28px; padding-left:22px; border-left:4px solid var(--rail, var(--ink));
+    margin-bottom:52px;
+  }
+  .track.research .track-head{ --rail: var(--teal); }
+  .track.education .track-head{ --rail: var(--coral); }
+
+  .track-head .num{ font-family:var(--mono); font-size:13px; color:var(--ink-soft); }
+  .track-head h2{ font-size:clamp(1.5rem,3vw,2.1rem); margin-top:6px; }
+  .track-head .role{ font-size:15.5px; color:var(--ink-soft); margin-top:10px; max-width:56ch; }
+
+  .status-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-bottom:44px; }
+  .status-card{
+    background:var(--card); border:1px solid var(--line); padding:24px 22px; border-radius:2px;
+  }
+  .status-card .eyebrow{ margin-bottom:10px; }
+  .status-card .big{ font-family:var(--serif); font-size:1.15rem; font-weight:700; line-height:1.4; }
+  .status-card .sm{ font-size:13.5px; color:var(--ink-soft); margin-top:6px; }
+
+  .badges{ display:flex; flex-wrap:wrap; gap:10px; margin-top:8px 0 0; }
+  .badge{
+    font-family:var(--mono); font-size:12px; letter-spacing:.02em;
+    padding:8px 14px; border-radius:999px; border:1px solid var(--line); background:var(--card); color:var(--ink);
+  }
+  .track.research .badge{ border-color:#CBDBDD; }
+  .track.education .badge{ border-color:#E6CFC5; }
+
+  .subhead{ font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin:52px 0 20px; }
+
+  .cardrow{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .prog-card{ background:var(--card); border:1px solid var(--line); padding:26px 24px; }
+  .prog-card h4{ font-size:15.5px; font-weight:700; margin-bottom:10px; }
+  .prog-card p{ font-size:14px; color:var(--ink-soft); margin:0; line-height:1.75; }
+
+  .archive-list{ display:flex; flex-direction:column; gap:14px; }
+  .archive-item{
+    display:flex; gap:20px; align-items:baseline; padding:20px 22px;
+    background:var(--card); border:1px solid var(--line); border-left-width:3px;
+  }
+  .track.research .archive-item{ border-left-color:var(--teal); }
+  .track.education .archive-item{ border-left-color:var(--coral); }
+  .archive-item .yr{ font-family:var(--mono); font-size:13px; color:var(--ink-soft); flex:0 0 64px; }
+  .archive-item .body{ flex:1; }
+  .archive-item .ttl{ font-weight:600; font-size:15px; }
+  .archive-item .desc{ font-size:13.5px; color:var(--ink-soft); margin-top:4px; }
+  .tag{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.04em; padding:3px 9px;
+    border-radius:999px; margin-left:10px; white-space:nowrap; vertical-align:middle;
+  }
+  .tag.progress{ background:#EFE6D8; color:#8A6A2E; }
+
+  .empty-card{
+    border:1px dashed var(--line); padding:34px 26px; text-align:center; color:var(--ink-soft); font-size:14px;
+    background:transparent;
+  }
+
+  @media (max-width:900px){
+    .status-grid, .cardrow{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:620px){
+    .status-grid, .cardrow{ grid-template-columns:1fr; }
+    .track-head{ padding-left:16px; }
+    .archive-item{ flex-direction:column; gap:6px; }
+  }
+
+  /* ============ TIMELINE ============ */
+  .timeline-section{ padding:96px 0; background:var(--void); color:#EDEEE7; }
+  .timeline-section .eyebrow{ color:#9FAAA4; }
+  .timeline-section h2{ color:#fff; font-size:clamp(1.5rem,3vw,2.1rem); margin-top:10px; margin-bottom:56px; }
+
+  .tl{ position:relative; padding-left:2px; }
+  .tl::before{
+    content:''; position:absolute; left:70px; top:6px; bottom:6px; width:1px;
+    background:linear-gradient(180deg, var(--teal), var(--coral));
+  }
+  .tl-item{ display:flex; gap:34px; padding:22px 0; position:relative; }
+  .tl-item .yr{ flex:0 0 70px; font-family:var(--mono); font-size:15px; color:#EDE3DA; text-align:right; padding-right:26px; position:relative; }
+  .tl-item .yr::after{
+    content:''; position:absolute; right:-4px; top:6px; width:9px; height:9px; border-radius:50%;
+    background:var(--paper); border:2px solid var(--coral);
+  }
+  .tl-item .txt{ padding-top:0; }
+  .tl-item .txt .h{ font-weight:600; font-size:15.5px; color:#fff; }
+  .tl-item .txt .d{ font-size:13.5px; color:#AEB8B2; margin-top:4px; }
+
+  @media (max-width:600px){
+    .tl::before{ left:52px; }
+    .tl-item{ gap:20px; }
+    .tl-item .yr{ flex-basis:52px; font-size:13px; padding-right:16px; }
+  }
+
+  /* ============ COMMUNITY ============ */
+  .community{ padding:100px 0; background:var(--paper); }
+  .community .lede{ max-width:60ch; color:var(--ink-soft); font-size:16px; margin-bottom:44px; }
+
+  .notes{ display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line); margin-bottom:56px; }
+  .note-item{ display:flex; gap:24px; padding:20px 2px; border-bottom:1px solid var(--line); }
+  .note-item .d{ flex:0 0 96px; font-family:var(--mono); font-size:12.5px; color:var(--ink-soft); padding-top:2px; }
+  .note-item .t{ font-size:14.5px; color:var(--ink); line-height:1.7; }
+
+  .contact-box{
+    display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between;
+    background:var(--void); color:#fff; padding:40px 36px;
+  }
+  .contact-box .l{ max-width:44ch; }
+  .contact-box h3{ color:#fff; font-size:1.3rem; margin-bottom:10px; }
+  .contact-box p{ color:#C6CFC9; font-size:14.5px; margin:0; }
+  .btnrow{ display:flex; gap:12px; flex-wrap:wrap; }
+  .btn{
+    font-family:var(--mono); font-size:12.5px; letter-spacing:.05em; text-decoration:none;
+    padding:13px 22px; border:1px solid rgba(255,255,255,.28); color:#fff; white-space:nowrap;
+  }
+  .btn.solid{ background:var(--coral); border-color:var(--coral); }
+  .btn:hover{ background:rgba(255,255,255,.08); }
+  .btn.solid:hover{ background:var(--coral-deep); }
+
+  @media (max-width:640px){ .contact-box{ flex-direction:column; align-items:flex-start; } }
+
+  /* ============ FOOTER ============ */
+  footer{ padding:40px 0; background:var(--void); border-top:1px solid rgba(255,255,255,.08); }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  footer p{ margin:0; font-family:var(--mono); font-size:12px; color:#8B958F; }
+</style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">CLIMATE & AI FUSION LAB</div>
-        <div><a href="#research">RESEARCH</a><a href="#education">EDUCATION</a><a href="#community">COMMUNITY</a></div>
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#home" class="brand">OOO <b>·</b> PORTFOLIO</a>
+    <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">☰</button>
+    <nav class="links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#research">Research</a>
+      <a href="#education">Education</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#community">Community</a>
     </nav>
+  </div>
+</header>
 
-    <header class="hero">
-        <h1>환경과 교육의 항해</h1>
-        <p>기후위기대응 연구원 & AI 융합 교육 전문가</p>
-    </header>
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="eyebrow">River Water Quality · Climate Research · AI-Integrated Math Education</div>
+    <h1>환경공학 연구자이자<br>수학 교사입니다</h1>
+    <p class="sub">하천 수질과 기후위기 대응을 연구하고, 데이터와 인공지능을 활용해 수학 수업을 설계합니다. 연구와 교육, 두 영역의 기록을 이곳에 쌓아갑니다.</p>
+    <div class="meta">
+      <span><b>기후위기대응 연구실</b> 연구원</span>
+      <span><b>에너지환경공학과</b> 박사수료 (2026)</span>
+      <span><b>고등학교 수학교사</b> · AIEDAP 마스터교원</span>
+    </div>
+  </div>
+  <div class="scrollcue">SCROLL</div>
+</section>
 
-    <!-- 1. 연구 섹션 (Research Rigor 슬라이드 내용) -->
-    <div class="container" id="research">
-        <h2 class="section-title">🌊 Research Archive: 연구 및 논문</h2>
-        <div class="grid">
-            <div class="card">
-                <div class="slide-img"><img src="research_slide.png" alt="연구 성과 슬라이드"></div>
-                <h3>학술 연구 및 논문 실적</h3>
-                <p><strong>에너지 환경공학과 박사 수료 (2026)</strong></p>
-                <p>하천 수질 데이터 분석 모델링 및 오염 부하 예측 연구를 수행합니다.</p>
-                <a href="thesis.pdf" class="btn">논문 PDF 보기</a>
-                <a href="research_data.xlsx" class="btn btn-outline">데이터셋</a>
-            </div>
-            <div class="card">
-                <h3>연구 전문 역량 (Skills)</h3>
-                <div class="badge">수질환경기사</div><div class="badge">위생사</div><div class="badge">수질환경 산업기사</div>
-                <p style="margin-top: 20px;">기후위기대응 연구실의 연구 데이터와 학술적 엄격함(Research Rigor)을 바탕으로 전문적인 솔루션을 제공합니다.</p>
-            </div>
-        </div>
+<!-- ============ PHILOSOPHY / TWIN STRIP ============ -->
+<section class="philosophy">
+  <div class="wrap">
+    <p class="lede reveal">
+      이 사이트는 <strong>연구</strong>와 <strong>교육</strong>을 하나로 섞지 않습니다.
+      연구실의 데이터는 학술적 엄밀함을 목적으로 하고, 동아리와 수업의 데이터는
+      학생의 성장을 목적으로 합니다. 서로 다른 목적과 방법론을 가진 두 영역이기에,
+      이 페이지에서도 각각의 공간에서 따로 소개합니다.
+    </p>
+
+    <div class="twin reveal">
+      <div class="twin-cell research">
+        <h3><span class="dot"></span>기후위기대응 연구실 (환경공학 연구)</h3>
+        <div class="twin-row"><div class="k">목적</div><div class="v">기후위기와 하천 수질 변화의 학술적 규명 — 객관성 최우선</div></div>
+        <div class="twin-row"><div class="k">데이터</div><div class="v">통제된 실험·관측 데이터, 환경 측정망 원자료</div></div>
+        <div class="twin-row"><div class="k">산출물</div><div class="v">학위논문, 학술 자료, 수질 평가 모델</div></div>
+      </div>
+      <div class="twin-cell education">
+        <h3><span class="dot"></span>데이터 분석 동아리 (AI 융합 교육)</h3>
+        <div class="twin-row"><div class="k">목적</div><div class="v">학생의 데이터 리터러시와 문제해결 역량 성장 — 교육적 가치 최우선</div></div>
+        <div class="twin-row"><div class="k">데이터</div><div class="v">공공 개방 데이터, 학생이 직접 수집한 생활 데이터</div></div>
+        <div class="twin-row"><div class="k">산출물</div><div class="v">학생 프로젝트, 수업 콘텐츠, 연수 자료</div></div>
+      </div>
     </div>
 
-    <!-- 2. 교육 섹션 (AI Innovation 슬라이드 및 추가 요청 내용) -->
-    <div class="container" id="education" style="background: #eef2f3; max-width: 100%; padding: 100px 50px;">
-        <div style="max-width: 1200px; margin: auto;">
-            <h2 class="section-title">📊 Education: AI 융합 수업 & 동아리</h2>
-            <div class="grid">
-                <div class="card">
-                    <div class="slide-img"><img src="edu_slide.png" alt="교육 혁신 슬라이드"></div>
-                    <h3>인공지능 융합 수업 & 교사 연수</h3>
-                    <p>AIEDAP 마스터 교원(2024-2025) 활동 및 교직원 AI 연수 사례입니다.</p>
-                    <a href="lesson_plan.pdf" class="btn">수업 설계안</a>
-                    <a href="training_portfolio.pdf" class="btn btn-outline">연수 실적</a>
-                </div>
-                <div class="card">
-                    <h3>동아리 활동 & 학생 프로젝트</h3>
-                    <p>데이터 분석 동아리 지도 및 학생 참여형 하천 수질 시각화 프로젝트 결과물입니다.</p>
-                    <a href="club_activity.pdf" class="btn">활동 보고서</a>
-                </div>
-            </div>
-        </div>
+    <p class="note reveal">두 영역은 서로 다른 최적의 방법론을 요구하며, 이 경계를 의도적으로 유지합니다</p>
+  </div>
+</section>
+
+<!-- ============ RESEARCH ============ -->
+<section class="track research" id="research">
+  <div class="wrap">
+    <div class="track-head reveal">
+      <div>
+        <div class="num">01 / RESEARCH</div>
+        <h2>하천 수질 · 기후위기 대응 연구</h2>
+        <p class="role">에너지환경공학과 박사수료 (2026) · 기후위기대응 연구실 연구원 · 주요 연구분야: 하천 수질(River Water Quality)</p>
+      </div>
     </div>
 
-    <!-- 3. 자유게시판 (글쓰기 공간) -->
-    <div class="container" id="community" style="text-align: center;">
-        <h2 class="section-title">🤝 Community: 소통과 공유</h2>
-        <div class="card" style="max-width: 800px; margin: auto;">
-            <p>연구 협업 제안, 교육 자료 문의 및 자유로운 의견을 남겨주세요.</p>
-            <!-- 깃허브 이슈 기능을 게시판으로 연결 -->
-            <a href="https://github.com/dodo3575/water-climate-lab/issues" class="btn" style="background: #00acc1; padding: 18px 45px; font-size: 1.1rem;">자유 게시판(글 쓰기) 입장하기</a>
-            <p style="margin-top: 25px; font-size: 0.85rem; color: #888;">* 누구나 자유롭게 의견을 남기고 소통할 수 있는 오픈 공간입니다.</p>
-        </div>
+    <div class="status-grid reveal">
+      <div class="status-card">
+        <div class="eyebrow">Status</div>
+        <div class="big">박사수료</div>
+        <div class="sm">에너지환경공학과 · 2026</div>
+      </div>
+      <div class="status-card">
+        <div class="eyebrow">Affiliation</div>
+        <div class="big">기후위기대응 연구실</div>
+        <div class="sm">연구원 (현재)</div>
+      </div>
+      <div class="status-card">
+        <div class="eyebrow">Focus</div>
+        <div class="big">하천 수질 데이터 분석</div>
+        <div class="sm">기후위기 대응 시나리오 연구</div>
+      </div>
     </div>
 
-    <footer>
-        <p>본 홈페이지의 모든 자료는 맑은 물 위 붉은 배의 정체성을 바탕으로 구축되었습니다 [1].</p>
-        <strong>Official Site:</strong>
-        <a href="https://dodo3575.github.io/water-climate-lab/" class="footer-url">https://dodo3575.github.io/water-climate-lab/</a>
-        <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.6;">© 2026 Climate & AI Fusion Lab. All rights reserved.</p>
-    </footer>
+    <div class="subhead">Certifications</div>
+    <div class="badges reveal">
+      <span class="badge">수질환경기사</span>
+      <span class="badge">수질환경산업기사</span>
+      <span class="badge">위생사</span>
+    </div>
+
+    <div class="subhead">Research Archive</div>
+    <div class="archive-list reveal">
+      <!-- ARCHIVE ITEM 템플릿 — 실제 연구 자료가 생기면 이 블록을 복사해서 채워주세요
+      <div class="archive-item">
+        <div class="yr">2026</div>
+        <div class="body">
+          <span class="ttl">논문/보고서 제목</span><span class="tag progress">진행중</span>
+          <div class="desc">한두 줄 설명</div>
+        </div>
+      </div>
+      -->
+      <div class="empty-card">
+        논문과 연구 노트가 이곳에 순서대로 쌓입니다.<br>첫 게시물을 준비 중입니다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EDUCATION ============ -->
+<section class="track education" id="education">
+  <div class="wrap">
+    <div class="track-head reveal">
+      <div>
+        <div class="num">02 / EDUCATION</div>
+        <h2>AI 융합 수학교육</h2>
+        <p class="role">고등학교 수학교사 · AIEDAP 마스터교원 (2024–2025) · 2024 교실혁명 선도교사 · 데이터 분석 동아리 지도</p>
+      </div>
+    </div>
+
+    <div class="status-grid reveal">
+      <div class="status-card">
+        <div class="eyebrow">Role</div>
+        <div class="big">고등학교 수학교사</div>
+        <div class="sm">중등교원자격 (수학, 환경)</div>
+      </div>
+      <div class="status-card">
+        <div class="eyebrow">Program</div>
+        <div class="big">AIEDAP 마스터교원</div>
+        <div class="sm">2024 선발 · 2025 전문성 강화</div>
+      </div>
+      <div class="status-card">
+        <div class="eyebrow">Leadership</div>
+        <div class="big">교실혁명 선도교사</div>
+        <div class="sm">2024 · AI 융합 수업 교사모임 소속</div>
+      </div>
+    </div>
+
+    <div class="subhead">Programs</div>
+    <div class="cardrow reveal">
+      <div class="prog-card">
+        <h4>데이터 분석 동아리</h4>
+        <p>학생 주도형 데이터 수집·분석 지도. 이론이 아닌 학생들의 실생활 문제를 데이터로 풀어보는 프로젝트를 진행합니다.</p>
+      </div>
+      <div class="prog-card">
+        <h4>교직원 연수</h4>
+        <p>AI 융합 수업 교사모임 소속으로, 동료 교사를 대상으로 한 AI·데이터 활용 연수를 기획하고 진행합니다.</p>
+      </div>
+      <div class="prog-card">
+        <h4>AI 융합 수업</h4>
+        <p>수학 교과의 논리적 사고를 바탕으로, 딥러닝·데이터 시각화 연수 경험을 실제 수업 설계에 적용합니다.</p>
+      </div>
+    </div>
+
+    <div class="subhead">Certifications &amp; Skills</div>
+    <div class="badges reveal">
+      <span class="badge">정보처리기사</span>
+      <span class="badge">컴퓨터활용능력 2급</span>
+      <span class="badge">중등교원자격증 (수학·환경)</span>
+      <span class="badge">한국사 1급</span>
+    </div>
+
+    <div class="subhead">Activity Notes</div>
+    <div class="archive-list reveal">
+      <!-- ARCHIVE ITEM 템플릿 — 동아리/연수 후기가 생기면 복사해서 채워주세요
+      <div class="archive-item">
+        <div class="yr">2026</div>
+        <div class="body">
+          <span class="ttl">활동 제목</span>
+          <div class="desc">한두 줄 설명</div>
+        </div>
+      </div>
+      -->
+      <div class="empty-card">
+        동아리 활동과 연수 기록이 이곳에 쌓입니다.<br>첫 게시물을 준비 중입니다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TIMELINE ============ -->
+<section class="timeline-section" id="timeline">
+  <div class="wrap">
+    <div class="eyebrow reveal">Since 2022</div>
+    <h2 class="reveal">연혁</h2>
+
+    <div class="tl">
+      <div class="tl-item reveal">
+        <div class="yr">2022</div>
+        <div class="txt"><div class="h">딥러닝 연수 수료</div><div class="d">데이터·AI 역량의 시작점</div></div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="yr">2023</div>
+        <div class="txt"><div class="h">데이터 시각화 과정 연수 수료</div></div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="yr">2024</div>
+        <div class="txt"><div class="h">교실혁명 선도교사 · AIEDAP 마스터교원 선발</div><div class="d">AI 융합 교육 리더십의 확장</div></div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="yr">2025</div>
+        <div class="txt"><div class="h">AIEDAP 마스터교원 전문성 강화 연수</div></div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="yr">2026</div>
+        <div class="txt"><div class="h">에너지환경공학과 박사수료 · 기후위기대응 연구실 연구원</div><div class="d">현재</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMMUNITY ============ -->
+<section class="community" id="community">
+  <div class="wrap">
+    <div class="eyebrow reveal">03 / Community</div>
+    <h2 class="reveal" style="margin-top:10px; margin-bottom:22px; font-size:clamp(1.5rem,3vw,2.1rem);">기록하고, 나눕니다</h2>
+    <p class="lede reveal">
+      연구 결과와 교육 활동이 쌓이는 대로 이곳에 짧은 업데이트를 남깁니다.
+      협업이나 연수 관련 문의는 아래 연락처로 편하게 연락해 주세요.
+    </p>
+
+    <div class="notes reveal">
+      <!-- NOTE 템플릿 — 새 소식이 생기면 이 블록을 복사해서 맨 위에 추가하세요
+      <div class="note-item">
+        <div class="d">2026.09</div>
+        <div class="t">내용</div>
+      </div>
+      -->
+      <div class="note-item">
+        <div class="d">2026.08</div>
+        <div class="t">사이트를 새로 시작합니다. 연구 노트와 교육 활동을 순서대로 채워갈 예정입니다.</div>
+      </div>
+    </div>
+
+    <div class="contact-box reveal">
+      <div class="l">
+        <h3>연구 협업 · 연수 문의</h3>
+        <p>하천 수질·기후 데이터 연구 협업, 교직원 연수, 동아리 운영 관련 문의를 환영합니다.</p>
+      </div>
+      <div class="btnrow">
+        <a class="btn solid" href="mailto:your-email@example.com">이메일 보내기</a>
+        <a class="btn" href="https://github.com/USERNAME" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 OOO. Research &amp; Education Portfolio.</p>
+    <p>Built with plain HTML — hosted on GitHub Pages.</p>
+  </div>
+</footer>
+
+<script>
+  // 모바일 메뉴 토글
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  toggle.addEventListener('click', function(){
+    links.classList.toggle('open');
+  });
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ links.classList.remove('open'); });
+  });
+
+  // 스크롤 리빌
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var targets = document.querySelectorAll('.reveal');
+  if(prefersReduced || !('IntersectionObserver' in window)){
+    targets.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    targets.forEach(function(el){ io.observe(el); });
+  }
+</script>
 
 </body>
 </html>
